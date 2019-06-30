@@ -13,9 +13,11 @@ export default class App extends React.Component {
   }
 
   updateList() {
-    Axios.get('/toDos').then(({ data }) => {
-      this.setState({ toDos: data });
-    });
+    return Axios.get('/toDos')
+      .then(({ data }) => {
+        this.setState({ toDos: data });
+      })
+      .catch(err => console.log(err));
   }
 
   componentDidMount() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import helpers from '../helpers/helpers.js';
 export default class Form extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +17,15 @@ export default class Form extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    helpers
+      .addTask({ content: this.state.content })
+      .then(() => {
+        this.props.handleUpdate();
+      })
+      .then(() => {
+        this.setState({ content: '' });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
