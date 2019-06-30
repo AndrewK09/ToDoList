@@ -30,7 +30,7 @@ export default class App extends React.Component {
         <h1>My ToDoList:</h1>
         <Form handleUpdate={this.updateList} />
         <h3>Tasks:</h3>
-        <ToDoList todos={this.state.toDos} />
+        <ToDoList todos={this.state.toDos} handleUpdate={this.updateList} />
       </div>
     );
   }

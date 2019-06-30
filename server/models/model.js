@@ -8,5 +8,8 @@ module.exports = {
   },
   saveToDo: toDo => {
     return mongoDb.create(toDo);
+  },
+  changeToDo: ({ filter, replacement }) => {
+    return mongoDb.update(filter, replacement);
   }
 };

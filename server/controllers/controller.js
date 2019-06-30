@@ -24,5 +24,13 @@ module.exports = {
         res.send('Saved todo');
       })
       .catch(err => handleErr(err));
+  },
+  changeToDo: (req, res) => {
+    model
+      .changeToDo(req.body)
+      .then(() => {
+        res.send('Changed todo');
+      })
+      .catch(err => handleErr(err));
   }
 };
