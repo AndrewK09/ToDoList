@@ -15,7 +15,7 @@ module.exports = {
       .then(result => {
         res.send(result);
       })
-      .catch(err => handleErr(err));
+      .catch(err => handleErr(err, res));
   },
   saveToDo: (req, res) => {
     model
@@ -23,7 +23,7 @@ module.exports = {
       .then(() => {
         res.send('Saved todo');
       })
-      .catch(err => handleErr(err));
+      .catch(err => handleErr(err, res));
   },
   changeToDo: (req, res) => {
     model
@@ -31,6 +31,14 @@ module.exports = {
       .then(() => {
         res.send('Changed todo');
       })
-      .catch(err => handleErr(err));
+      .catch(err => handleErr(err, res));
+  },
+  deleteToDo: (req, res) => {
+    model
+      .deleteToDo(req.body)
+      .then(() => {
+        res.send('Deleted todo');
+      })
+      .catch(err => handleErr(err, res));
   }
 };

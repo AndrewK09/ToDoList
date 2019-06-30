@@ -23,8 +23,7 @@ export default class ToDoEntry extends Component {
 
   handleDelete(e) {
     const { _id } = this.props.task;
-    let filter = { _id: _id };
-    helpers.deleteTask(filter, replacement).then(() => {
+    helpers.deleteTask(_id).then(() => {
       this.props.handleUpdate();
     });
   }

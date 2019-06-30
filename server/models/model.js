@@ -11,5 +11,8 @@ module.exports = {
   },
   changeToDo: ({ filter, replacement }) => {
     return mongoDb.update(filter, replacement);
+  },
+  deleteToDo: _id => {
+    return mongoDb.deleteOne(_id);
   }
 };

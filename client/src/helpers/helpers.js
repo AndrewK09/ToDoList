@@ -6,5 +6,8 @@ module.exports = {
   },
   changeTask: (filter, replacement) => {
     return Axios.put('/toDos', { filter, replacement });
+  },
+  deleteTask: _id => {
+    return Axios.delete('/toDos', { _id });
   }
 };
