@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Axios from 'axios';
 import Form from './Form.jsx';
 export default class App extends React.Component {
   constructor(props) {
@@ -7,12 +8,25 @@ export default class App extends React.Component {
     this.state = {
       toDos: []
     };
+    this.updateList = this.updateList.bind(this);
   }
+
+  updateList() {
+    Axios.get('/toDos').then(({ data }) => {
+      this.setState({ toDos: data });
+    });
+  }
+
+  componentDidMount() {
+    this.updateList();
+  }
+
   render() {
     return (
       <div>
         <h1>My ToDoList:</h1>
-        <Form />
+        <Form handleUpdate={this.updateList} />
+        <h3>Tasks:</h3>
       </div>
     );
   }
