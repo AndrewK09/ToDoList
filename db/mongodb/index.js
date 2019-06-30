@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect('mongodb://localhost:27017/badmovies', {
+  mongoose.connect('mongodb://localhost/toDoList', {
     useNewUrlParser: true
   });
 }
@@ -17,7 +17,7 @@ db.once('open', () => {
 
 let toDoSchema = new mongoose.Schema({
   content: String,
-  completed: Boolean
+  completed: { type: Boolean, default: false }
 });
 
 let ToDos = mongoose.model('ToDo', toDoSchema);
