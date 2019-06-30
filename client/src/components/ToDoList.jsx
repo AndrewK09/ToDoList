@@ -4,7 +4,7 @@ export default function ToDoList(props) {
   const { todos, handleUpdate } = props;
   return (
     <div>
-      <ol>
+      <ol className='container'>
         {todos.map(task => {
           return (
             <ToDoEntry key={task._id} task={task} handleUpdate={handleUpdate} />

@@ -4,14 +4,27 @@ export default class ToDoEntry extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleClick(e) {
-    const { _id, content, completed } = this.props.task;
-    let filter = { _id: _id };
+  handleChange(e) {
+    const { _id, completed } = this.props.task;
+    let filter = { _id };
     let replacement = { completed: !completed };
+    if (e.target.name === 'edit') {
+      let content = prompt('Edit task');
+      replacement = { content };
+    }
     helpers.changeTask(filter, replacement).then(() => {
+      this.props.handleUpdate();
+    });
+  }
+
+  handleDelete(e) {
+    const { _id } = this.props.task;
+    let filter = { _id: _id };
+    helpers.deleteTask(filter, replacement).then(() => {
       this.props.handleUpdate();
     });
   }
@@ -19,13 +32,20 @@ export default class ToDoEntry extends Component {
   render() {
     const { content, completed } = this.props.task;
     return (
-      <li
-        style={{ textDecoration: completed ? 'line-through' : 'none' }}
-        onClick={this.handleClick}
-      >
-        {content}
-        <button>Edit</button>
-        <button>Delete</button>
+      <li className='row'>
+        <button className='col-sm-1' name='edit' onClick={this.handleChange}>
+          E
+        </button>
+        <button className='col-sm-1' onClick={this.handleDelete}>
+          X
+        </button>
+        <h5
+          style={{ textDecoration: completed ? 'line-through' : 'none' }}
+          onClick={this.handleChange}
+          className='col-sm-4'
+        >
+          {content}
+        </h5>
       </li>
     );
   }
