@@ -8,6 +8,6 @@ module.exports = {
     return Axios.put('/toDos', { filter, replacement });
   },
   deleteTask: _id => {
-    return Axios.delete('/toDos', { _id });
+    return Axios.delete('/toDos', { data: { _id } });
   }
 };
